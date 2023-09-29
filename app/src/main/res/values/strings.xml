@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">TaskManager6.1</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_task">Add task</string>
+    <string name="task">Task</string>
+    <string name="delete_message">Are you sure about this?</string>
+    <string name="delete">Delete</string>
+    <string name="cansel">Cansel</string>
+    <string name="yes">Yes</string>
+
+    <string-array name="spinner_items">
+        <item>Все</item>
+        <item>Завершенные</item>
+        <item>Незавершенные</item>
+    </string-array>
+</resources>
