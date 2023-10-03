@@ -8,6 +8,7 @@
     <string name="delete">Delete</string>
     <string name="cansel">Cansel</string>
     <string name="yes">Yes</string>
+    <string name="state">State</string>
 
     <string-array name="spinner_items">
         <item>Все</item>

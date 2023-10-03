@@ -1,6 +1,7 @@
 package com.example.taskmanager61.ui.task
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.text.SpannableString
 import android.text.style.StrikethroughSpan
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.example.taskmanager61.model.Task
 import com.example.taskmanager61.model.Task as task
 
 class TaskAdapter(
+    val onDoneClick: (task: Task)->Unit,
     val onLongClick: (task: Task) -> Boolean,
     private var onClick: (task: Task) -> Unit,
 ) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
@@ -40,23 +42,16 @@ class TaskAdapter(
     inner class TaskViewHolder(private val binding: TaskItemsBinding) : ViewHolder(binding.root) {
         private val checkBox: CheckBox = binding.chbCompleted
 
-        init {
-            checkBox.setOnCheckedChangeListener { _, isChecked ->
-                val spannableText = SpannableString(binding.tvTask.text.toString())
-                if (isChecked) {
-                    spannableText.setSpan(StrikethroughSpan(), 0, spannableText.length, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
-                } else {
-                    for (span in spannableText) {
-                        spannableText.removeSpan(span)
-                    }
-                }
-                binding.tvTask.text = spannableText
-            }
-        }
-
         fun bind(task: Task) {
             task.id = adapterPosition
             binding.tvTask.text = task.text
+            binding.chbCompleted.isChecked = task.checked
+            if (binding.chbCompleted.isChecked){
+                binding.tvTask.setTextColor(Color.GRAY)
+            }
+            binding.chbCompleted.setOnClickListener {
+                onDoneClick(task)
+            }
             itemView.setOnLongClickListener {
                 onLongClick(list[adapterPosition])
             }
